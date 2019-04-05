@@ -8,8 +8,9 @@ data = json.load(open("data.json"))
 def getDefinition (keyword):
 
 	# Account for case in intput
-	keyword = keyword.lower()
-	if keyword in data:
+	if keyword.istitle() == "False":
+		keyword = keyword.lower()
+	elif keyword in data:
 		return data[keyword]
 	#check to see if you can make a fuzzy match of the term
 	elif len( get_close_matches(keyword, data.keys(),cutoff=0.8)) > 0:
